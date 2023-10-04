@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.stockservice.dto.StockDto;
 import com.stockservice.entities.Stock;
 import com.stockservice.exceptions.StockNotFoundException;
 import com.stockservice.repo.StockDao;
@@ -35,12 +36,12 @@ public class StockServiceImpl implements StockService {
 	}
 
 	@Override
-	public String updateStock(Stock stock, int id){
+	public String updateStock(StockDto stockDto, int id){
 		try {
 			Stock stockToUpdate = stockDao.findById(id)
 					.orElseThrow(() -> new StockNotFoundException("Stock not found with id: " + id));
-			stockToUpdate.setStockName(stock.getStockName());
-			stockToUpdate.setStockPrice(stock.getStockPrice());
+			stockToUpdate.setStockName(stockDto.getStockName());
+			stockToUpdate.setStockPrice(stockDto.getStockPrice());
 			return "Stock with id: " + id + "updated successfully!";
 		}
 		catch(StockNotFoundException ex) {

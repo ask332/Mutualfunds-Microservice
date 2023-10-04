@@ -1,0 +1,23 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /mutualfundsapp
+spring:
+  application:
+    name: mutualfunds-service
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521/xe
+    username: fundadmin
+    password: fundadmin
+    driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    generate-ddl: true
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

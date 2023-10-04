@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.stockservice.dto.StockDto;
 import com.stockservice.entities.Stock;
 import com.stockservice.exceptions.StockNotFoundException;
 import com.stockservice.services.StockService;
@@ -39,8 +40,8 @@ public class StockController {
 	}
 
 	@PutMapping(path = "{id}")
-	public String updateStock(@RequestBody Stock stock, @PathVariable(name = "id") int id){
-		return stockService.updateStock(stock, id);
+	public String updateStock(@RequestBody StockDto stockDto, @PathVariable(name = "id") int id){
+		return stockService.updateStock(stockDto, id);
 	}
 	
 	@DeleteMapping(path="{id}")
